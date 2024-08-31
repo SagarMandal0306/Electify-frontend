@@ -1,0 +1,31 @@
+
+<div class="signup">
+    <div class="loader" *ngIf="loaderDis"></div>
+    <form action="" #signup="ngForm" (ngSubmit)="onFormSubmit()" *ngIf="contentDis">
+        <h1>Create New Account</h1>
+        <input type="text" placeholder="Username" name="username" [(ngModel)]="model.username" #username="ngModel" required >
+        <ng-container *ngIf="username.touched && username.invalid">
+            <small *ngIf="username.errors?.['required']">*Username is Required</small>
+        </ng-container>
+        <input type="email" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" required email>
+        <ng-container *ngIf="email.touched && email.invalid">
+            <small *ngIf="email.errors?.['required']">*Email is Required..!</small>
+            <small *ngIf="email.errors?.['email']">*Please Enter Valid Email Address..!</small>
+        </ng-container>
+        <input type="password" placeholder="password" name="password" [(ngModel)]="model.password" #pass="ngModel" required minlength="8">
+        <ng-container *ngIf="pass.touched && pass.invalid">
+            <small *ngIf="pass.errors?.['required']">*Password is Required</small>
+            <small *ngIf="pass.errors?.['minlength']">*Password Length Minimum 8 character</small>
+        </ng-container>
+        <input type="text" placeholder="Re-enter Password" name="rpassword" [(ngModel)]="model.rpassword" #rpass="ngModel" required>
+        <ng-container *ngIf="rpass.touched && rpass.invalid">
+            <small *ngIf="rpass.errors?.['required']">*This Field is Required</small>
+        </ng-container>
+        <small *ngIf="pass.value!=rpass.value && rpass.touched && rpass.valid">
+            *Please  Enter Correct Password
+        </small>
+        <button type="submit" [disabled]="signup.invalid || pass.value!=rpass.value">Signup</button>
+        <a routerLink="/login">Already have Account?login</a>
+    </form>
+</div>
+

@@ -1,0 +1,22 @@
+<div class="login">
+    <div class="loader" *ngIf="loaderDis"></div>
+    <form (ngSubmit)="onFormSubmit()" #loginform="ngForm" *ngIf="contentDis" >
+        <h1>Wellcome Back..!</h1>
+        <p>Login to <span style="font-weight: bold;">ELECTIFY</span></p>
+        <input type="text" placeholder="username" name="username" [(ngModel)]="model.username" required #username="ngModel">
+        <ng-container *ngIf="username.touched && username.invalid">
+            <small *ngIf="username.errors?.['required']">*Username is Required</small>
+        </ng-container>
+        <small *ngIf="email">*User Id Does not Exist..!</small>
+        <input type="password" placeholder="password" name="password"  [(ngModel)]="model.password" required #pass="ngModel">
+        <ng-container *ngIf="pass.touched && pass.invalid">
+            <small *ngIf="pass.errors?.['required']">*Password is Required</small>
+        </ng-container>
+        <small *ngIf="password">*Password is In-correct</small>
+        <button type="submit" [disabled]="loginform.invalid" >Login</button>
+
+        <div class="links">
+            <a routerLink="/signup">Create new Account</a>
+        </div>
+    </form>
+</div>

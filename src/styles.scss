@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Poppins&family=Reem+Kufi+Fun&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ubuntu&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+   
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 60px;
+    aspect-ratio: 1;
+    border: 15px solid #e2e2e2;
+    border-radius: 50%;
+    position: relative;
+    transform: rotate(45deg);
+  }
+  .loader::before {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    border: 15px solid #0a0a0f;
+    animation: l18 2s infinite linear;
+  }
+  @keyframes l18 {
+      0%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
+      25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0   ,100% 0   ,100% 0   )}
+      50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+      75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    100%)}
+      100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    0   )}
+  }

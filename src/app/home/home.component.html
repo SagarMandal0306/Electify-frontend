@@ -1,0 +1,40 @@
+<div class="home">
+<div class="top">
+    <h4>Voting Rooms</h4>
+    <button (click)="formForJoinRoom(0)">Join Rooms+</button>
+</div>
+<div [ngClass]="{'votes':true,'blur':joinRoom}">
+    <div class="loader" *ngIf="loaderDis"></div>
+    @if(contentDis){
+        <div class="box" *ngFor="let room of rooms" (click)="formForJoinRoom(room.roomid)">
+            <div class="left">
+    
+               <img [src]="svggenarator(room.title)" alt="">
+                <div class="text">
+                    <h4>{{room.title}}</h4>
+                    <p class="desc">{{room.desc}}</p>
+                    <!-- <p>members: <strong>{{totalUser}}</strong></p> -->
+                </div>
+            </div>
+            <div class="right">
+                <p>03-08-2024</p>
+            </div>
+        </div>
+    }
+    
+</div>
+<form class="form" *ngIf="joinRoom" #joinForm="ngForm"  (ngSubmit)="submitForm(joinForm)">
+    <span (click)="closeForm()">x</span>
+    <h2>Join the Room</h2>
+    <input type="text"  placeholder="username" name="username" [(ngModel)]="model.username" required #username="ngModel" readonly>
+    <ng-container *ngIf="username.touched && username.invalid">
+        <small *ngIf="username.errors?.['required']">*Username is Required</small>
+    </ng-container>
+    <input type="number" placeholder="Roomid"  name="roomid" [(ngModel)]="model.roomid" required pattern="^\d{8}$" #roomid="ngModel">
+    <ng-container *ngIf="roomid.touched && roomid.invalid">
+        <small *ngIf="roomid.errors?.['required']">*Roomid is Required</small>
+        <small *ngIf="roomid.errors?.['pattern']">*Roomid must be 8 digit</small>
+    </ng-container>
+    <button type="submit">join Room</button>
+</form>
+</div>
